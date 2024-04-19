@@ -1,5 +1,10 @@
-from django.urls import path
-from .views import *
+from django.urls import path, include
+from api.users.views import *
+from api.products.views import *
+from api.crafts.views import *
+from api.views import getRoutes
+from api.users.views import MyTokenObtainPairView
+
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
@@ -9,12 +14,15 @@ urlpatterns = [
     path('login/refresh/', TokenRefreshView.as_view(), name='login_refresh'),
     path('allcrafts/', allCrafts, name='allcrafts'),
     path('usercrafts/', userCrafts, name='usercrafts'),
+    path('stores/', include('api.stores.urls')),
+    path('products/', include('api.products.urls')),
+    path('carts/', include('api.carts.urls')),
+    path('orders/', include('api.orders.urls')),
+    path('users/', include('api.users.urls')),
+    path('crafts/', include('api.crafts.urls')),
+    path('wishlist/', include('api.wishlist.urls')),
+    path('messages/', include('api.messages.urls')),
+    path('categories/', include('api.categories.urls')),
 
-    # path('add_cart_item/', AddCartItemView.as_view(), name='cartItem'),
-    # path('signup', signup, name='signup'),
-    # path('logout', logout, name='logout'),
-    # path('test_token', test_token, name='test_token'),
-    # path('refresh', refresh_token, name='refresh_token'),
-    # path('usercrafts', userCrafts, name='userCrafts'),
-    # path('products', ProductView.as_view(), name="product"),
+
 ]

@@ -8,6 +8,6 @@ class MessageSerializer(serializers.ModelSerializer):
     receiver = UserSerializerWithToken()
     class Meta:
         model = Message
-        fields = ['id', 'sender', 'receiver', 'message', 'created_at', 'updated_at']
+        fields = ['id', 'sender', 'receiver', 'message', 'created_at', 'isRead', 'updated_at']
 
 

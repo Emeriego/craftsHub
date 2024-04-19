@@ -1,12 +1,11 @@
 from django.db import models
 from api.users.models import User
+from api.products.models import Product
 
 # Create your models here.
 from django.db import models
-from django.contrib.auth.models import UserManager, AbstractBaseUser, PermissionsMixin
 from datetime import datetime
 from django.utils.translation import gettext_lazy as _
-from django.utils import timezone
 
 
 class Cart(models.Model):
@@ -17,3 +16,16 @@ class Cart(models.Model):
 
     def __str__(self):
         return str(self.User)
+
+
+
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, default=1)
+    product = models.ForeignKey(Product, on_delete = models.CASCADE)
+    qty = models.IntegerField()
+    added_at = models.DateTimeField(default=datetime.now, blank=True)
+    updated_at = models.DateTimeField(default=datetime.now, blank=True)
+
+    def __str__(self):
+        return str(self.product)

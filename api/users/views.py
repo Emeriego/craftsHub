@@ -62,3 +62,25 @@ def registerUser(request):
         message = {'detail': 'There is a problem with your registration'}
         return Response(message, status=400)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getUserProfile(request):
+    user = request.user
+    serializer = UserSerializerWithToken(user, many=False)
+    return Response(serializer.data)
+
+
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateUserProfile(request):
+    user = request.user
+    serializer = UserSerializerWithToken(user, many=False)
+    data = request.data
+
+    user.first_name = data['name']
+    user.username = data['username']
+    user.email = data['email']
+    user.save()
+

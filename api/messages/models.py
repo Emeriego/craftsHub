@@ -10,6 +10,7 @@ class Message(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sent_messages")
     receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="received_messages")
     message = models.TextField()
+    isRead = models.BooleanField(default=False)
     sent_at = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
