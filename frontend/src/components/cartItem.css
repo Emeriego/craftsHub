@@ -1,0 +1,11 @@
+.item_wrap{
+    width: 90%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: beige; */
+    border-radius: 10px;
+    border: solid 1px white;
+    padding: 5px 20px;
+}
