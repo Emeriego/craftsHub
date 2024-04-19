@@ -7,6 +7,7 @@ from api.messages.models import Message
 from rest_framework.permissions import IsAuthenticated
 
 
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def createMessage(request):
@@ -25,7 +26,7 @@ def createMessage(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def getMessages(request):
+def allMessages(request):
     user = request.user
     messages = Message.objects.filter(receiver=user)
     serializer = MessageSerializer(messages, many=True)

@@ -23,13 +23,13 @@ def userCrafts(request):
         return Response([], status=status.HTTP_200_OK)
 
 
-# @api_view(['GET'])
-# def allCrafts(request):
-#         products = Product.objects.all()
-#         # products = Product.objects.filter(store__store_owner=user)
-#         serializer = ProductSerializer(products, many=True)
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     # return Response({'msg': "no token found"}, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['GET'])
+def allCrafts(request):
+        products = Product.objects.all()
+        # products = Product.objects.filter(store__store_owner=user)
+        serializer = ProductSerializer(products, many=True)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    # return Response({'msg': "no token found"}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 def getCraft(request, pk):

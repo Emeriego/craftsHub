@@ -8,7 +8,6 @@ from api.wishlist.models import WishItem
 from rest_framework.permissions import IsAuthenticated
 
 
-
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def createWishItem(request):

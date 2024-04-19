@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 
 
 @api_view(['GET'])
-def getCategories(request):
+def allCategories(request):
     categories = Category.objects.all()
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data)

@@ -8,7 +8,6 @@ from .models import Cart, CartItem
 from rest_framework.permissions import IsAuthenticated
 
 
-
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def createCart(request):
@@ -45,7 +44,12 @@ def getCart(request, pk):
     serializer = CartSerializer(cart, many=False)
     return Response(serializer.data)
 
-
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def deleteCart(request, pk):
+    cart = Cart.objects.get(_id=pk)
+    cart.delete()
+    return Response('Cart was deleted')
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -54,6 +58,17 @@ def getCartItems(request, pk):
     items = CartItem.objects.filter(cart=cart)
     serializer = CartItemSerializer(items, many=True)
     return Response(serializer.data)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateCartItem(request, pk):
+    data = request.data
+    item = CartItem.objects.get(_id=pk)
+    item.qty = data['qty']
+    item.save()
+    return Response('Item was updated')
+
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])

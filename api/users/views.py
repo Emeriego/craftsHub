@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 
 
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
@@ -70,6 +71,12 @@ def getUserProfile(request):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getUsers(request):
+    users = User.objects.all()
+    serializer = UserSerializerWithToken(users, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['PUT'])
