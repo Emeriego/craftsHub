@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from .serializers import *
-from api.users.models import User
+from api.models import User
 from api.messages.models import Message
 from rest_framework.permissions import IsAuthenticated
 

@@ -1,7 +1,7 @@
 from django.urls import path, include
 from api.users.views import *
 from api.products.views import *
-from api.views import getRoutes
+from api.users.views import getRoutes
 from api.users.views import MyTokenObtainPairView
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
@@ -21,9 +21,7 @@ urlpatterns = [
     path('stores/', include('api.stores.urls')),
     path('products/', include('api.products.urls')),
     path('carts/', include('api.carts.urls')),
-    path('orders/', include('api.orders.urls')),
     path('users/', include('api.users.urls')),
-    path('crafts/', include('api.crafts.urls')),
     path('wishlist/', include('api.wishlist.urls')),
     path('messages/', include('api.messages.urls')),
     path('categories/', include('api.categories.urls')),

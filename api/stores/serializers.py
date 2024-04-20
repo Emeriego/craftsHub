@@ -3,6 +3,7 @@ from .models import *
 from api.users.serializers import UserSerializerWithToken
 from rest_framework import serializers
 
+
 class StoreSerializer(serializers.ModelSerializer):
     # store_owner = serializers.CharField(source='owner.first_name', read_only=True)
     owner = UserSerializerWithToken()  # Embed StoreSerializer within ProductSerializer

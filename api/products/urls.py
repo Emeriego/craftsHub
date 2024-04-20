@@ -4,7 +4,6 @@ from api.products.views import *
 # from api.users.views import MyTokenObtainPairView
 
 
-
 urlpatterns = [
     path('',    allCrafts, name='get_products'),
     path('create/', createCraft, name='create_product'),

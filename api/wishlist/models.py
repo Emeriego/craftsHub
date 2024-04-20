@@ -1,5 +1,5 @@
 from django.db import models
-from api.users.models import User
+from api.models import User
 from api.products.models import Product
 
 

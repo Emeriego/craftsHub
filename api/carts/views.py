@@ -8,6 +8,13 @@ from .models import Cart, CartItem
 from rest_framework.permissions import IsAuthenticated
 
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def allCarts(request):
+    carts = Cart.objects.all()
+    serializer = CartSerializer(carts, many=True)
+    return Response(serializer.data)
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def createCart(request):

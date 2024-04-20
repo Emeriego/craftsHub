@@ -7,7 +7,9 @@ from api.stores.models import Store
 from rest_framework.permissions import IsAuthenticated
 
 
+
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def createStore(request):
     user = request.user
     data = request.data
