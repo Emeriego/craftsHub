@@ -48,7 +48,7 @@ function UserCrafts() {
 
     let getUserCrafts = () => {
         // console.log("from getUsercrafts", String(loggedInToken))
-        const token = JSON.parse(sessionStorage.getItem('authToken'))
+        const token = JSON.parse(localStorage.getItem('authToken'))
         // console.log("from getUsercrafts", String(token.access))
         const authHeader = `Bearer ${token.access}`; // Concatenate with 'Bearer ' prefix
 

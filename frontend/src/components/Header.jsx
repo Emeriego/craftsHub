@@ -4,23 +4,21 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { authActions } from '../store';
 import {FaPortrait} from 'react-icons/fa'
+import {AiOutlineShoppingCart} from 'react-icons/ai'
+import LogoutListener from '../utils/LogoutListener';
 // import { authActions } from "../store";
 
 
 // import { actions, actions2, cartActions, prodActions } from "../store/index"
-
-
 
 const Header = () => {
     const qtyFlag = useSelector(state => state.cart.totalQty)
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
     const loggedInToken = useSelector(state => state.auth.loggedInToken)
     const loggedInDetail = useSelector(state => state.auth.loggedInDetail)
-
     const token = useSelector(state => state.auth.token)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
 
 
 
@@ -28,11 +26,11 @@ const Header = () => {
     //     try {
     //         await axios.post('http://localhost:8000/logout', token, {
     //             headers: {
-    //                 'Authorization': `Token ${sessionStorage.getItem('accessToken')}`
+    //                 'Authorization': `Token ${localStorage.getItem('accessToken')}`
     //             }
     //         });
     //         // Remove access token from local storage
-    //         sessionStorage.removeItem('accessToken');
+    //         localStorage.removeItem('accessToken');
     //         // Redirect to the home page or any other desired page
     //         window.location.href = '/';
     //     } catch (error) {
@@ -43,7 +41,7 @@ const Header = () => {
 
     // const logoutUser = async () => {
     //     try {
-    //         const accessToken = sessionStorage.getItem('accessToken');
+    //         const accessToken = localStorage.getItem('accessToken');
     //         if (!accessToken) {
     //             // throw new Error('Access token not found');
     //             return navigate('/')
@@ -64,8 +62,8 @@ const Header = () => {
     //         );
     
     //         // Remove access token from local storage
-    //         sessionStorage.removeItem('accessToken');
-    //         sessionStorage.removeItem('user');
+    //         localStorage.removeItem('accessToken');
+    //         localStorage.removeItem('user');
 
     //         dispatch(authActions.logout())
     //         // Redirect to the home page or any other desired page
@@ -79,9 +77,10 @@ const Header = () => {
     
 
     const logoutUser = async () => {
-        sessionStorage.removeItem('authToken')
+        localStorage.setItem('logout', Date.now().toString());
+        localStorage.removeItem('authToken')
         
-        console.log("from logout: ", loggedInToken)
+        // console.log("from logout: ", loggedInToken)
         // try {
         //   // Make a POST request to the logout endpoint
         //   const response = await axios.post('http://localhost:8000/logout', {}, {
@@ -141,12 +140,12 @@ const Header = () => {
                                     isLoggedIn ?
                                         <div >
                                             <Link onClick={logoutUser} to="/">
+                                            <LogoutListener onLogout={logoutUser} />
                                             <i className="fa fa-user" aria-hidden="true"></i>
                                             <span>
                                                 Logout
                                             </span>
-                                            </Link>
-                                            
+                                            </Link>  
                                             <Link to='/usercrafts'>
                                              {loggedInDetail.username}<FaPortrait />
                                             </Link>

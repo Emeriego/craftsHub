@@ -62,13 +62,13 @@ let refreshToken = async (tokens) => {
 
 
 const setRefreshTokens = async (dispatch, authActions) => {
-    const tokens = JSON.parse(sessionStorage.getItem('authToken'));
+    const tokens = JSON.parse(localStorage.getItem('authToken'));
     console.log("before refresh:", tokens);
     try {
         const refreshedTokens = await refreshToken(tokens);
         console.log("after refresh", refreshedTokens);
         if (refreshedTokens != null && Object.keys(refreshedTokens).length !== 0) {
-            sessionStorage.setItem('authToken', JSON.stringify(refreshedTokens));
+            localStorage.setItem('authToken', JSON.stringify(refreshedTokens));
             dispatch(authActions.login(refreshedTokens));
             
         } else {
@@ -85,7 +85,7 @@ const setRefreshTokens = async (dispatch, authActions) => {
 
 // let refreshToken = (tokens) => {
 //     // const { authToken, user, logout } = useContext(AuthContext)
-//     // const tokens = JSON.parse(sessionStorage.getItem('authToken'))
+//     // const tokens = JSON.parse(localStorage.getItem('authToken'))
 //     if (tokens) {
 //         const decodedToken = jwtDecode(tokens.access);
 //         const currentTime = Date.now() / 1000; // Convert milliseconds to seconds
@@ -114,7 +114,7 @@ const setRefreshTokens = async (dispatch, authActions) => {
 //                     console.log("tokens inside refreshToken",tokens)
 
 //                     // console.log('data from refresh: ', jwtDecode(data.access));
-//                     // sessionStorage.setItem('authToken', JSON.stringify(data));
+//                     // localStorage.setItem('authToken', JSON.stringify(data));
 //                     // dispatch(authActions.login(data))
 //                     return tokens
 //                     // setUser(jwtDecode(data.access));
@@ -162,7 +162,7 @@ const setRefreshTokens = async (dispatch, authActions) => {
 
 // const logoutUser = async () => {
 //     const loggedInToken = useSelector(state => state.auth.loggedInToken)
-//     sessionStorage.removeItem('authToken')
+//     localStorage.removeItem('authToken')
     
 //     console.log("from logout: ", loggedInToken)
 //     // try {

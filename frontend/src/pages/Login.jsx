@@ -30,6 +30,8 @@ const Login = () => {
     console.log(password)
   };
 
+
+  
   //   const authenticateUser = async (email, password) => {
   //     const credentials = {
   //       'email': email,
@@ -52,8 +54,8 @@ const Login = () => {
   //     }
 
   //     // Store tokens securely, e.g., in session storage
-  //     sessionStorage.setItem('accessToken', token);
-  //     sessionStorage.setItem('user', JSON.stringify(user))
+  //     localStorage.setItem('accessToken', token);
+  //     localStorage.setItem('user', JSON.stringify(user))
   //     const data = {'user': user, 'token': token}
   //     dispatch(authActions.login(data))
   //     console.log(user, token);
@@ -115,7 +117,7 @@ const Login = () => {
     try {
       const tokens = await authenticateUser(email, password);
       // Store access token and its expiration time in local storage
-      sessionStorage.setItem('authToken', JSON.stringify(tokens));
+      localStorage.setItem('authToken', JSON.stringify(tokens));
       dispatch(authActions.login(tokens));
       // Navigate after successful login
       navigate('/');

@@ -92,12 +92,12 @@ function Home() {
     // //         try {
     // //             await axios.post('http://localhost:8000/logout', token, {
     // //                 headers: {
-    // //                     'Authorization': `Token ${sessionStorage.getItem('accessToken')}`
+    // //                     'Authorization': `Token ${localStorage.getItem('accessToken')}`
     // //                 }
     // //             });
     // //             // Remove access token from session storage
-    // //             sessionStorage.removeItem('accessToken');
-    // //             sessionStorage.removeItem('user');
+    // //             localStorage.removeItem('accessToken');
+    // //             localStorage.removeItem('user');
 
     // //             // Redirect to the home page or any other desired page
     // //         } catch (error) {
@@ -107,8 +107,8 @@ function Home() {
     // //     };
 
     // //    const authenticateUser = () => {
-    // //     const mytoken = sessionStorage.getItem('accessToken')
-    // //     const user = JSON.parse(sessionStorage.getItem('user'))
+    // //     const mytoken = localStorage.getItem('accessToken')
+    // //     const user = JSON.parse(localStorage.getItem('user'))
     // //     console.log(mytoken)
     // //     if (mytoken == null) {
     // //         // window.location.href = '/';

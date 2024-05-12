@@ -57,3 +57,15 @@ def deleteStore(request, pk):
     store = Store.objects.get(_id=pk)
     store.delete()
     return Response('Store Deleted')
+
+# @api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+# def uploadImage(request):
+#     data = request.data
+
+#     store_id = data['store_id']
+#     store = Store.objects.get(_id=store_id)
+
+#     store.image = request.FILES.get('image')
+#     store.save()
+#     return Response('Image was uploaded')
